@@ -5,12 +5,13 @@ import Home from './views/Home.vue'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
+  base: process.env.BASE_URL,
   routes: [
     {
       path: '/',
       name: 'home',
-      component: Home,
-      redirect:'/mi/home'
+      component: Home
     },
     {
       path: '/about',
@@ -19,15 +20,6 @@ export default new Router({
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-    },
-    {
-      path: "/mi/home",
-      name: "mi_home",
-      component: () => import(/* webpackChunkName: "about" */ './views/mi/index.vue')
-    }, {
-      path: "/mi/cart",
-      name: "mi_cart",
-      component: () => import(/* webpackChunkName: "about" */ './views/mi/cart.vue')
-    },
+    }
   ]
 })
